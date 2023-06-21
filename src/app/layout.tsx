@@ -1,26 +1,26 @@
-import Sidebar from '@/components/Sidebar'
-import './globals.css'
-import { Figtree } from 'next/font/google'
+import { Figtree } from 'next/font/google';
 
-const font = Figtree({ subsets: ['latin'] })
+import Sidebar from 'components/Sidebar';
+
+import './globals.css';
+
+const font = Figtree({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Spotify Clone',
-  description: 'Listing to music',
-}
+  description: 'Listing to music'
+};
 
 export default function RootLayout({
-  children,
+  children
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <body className={font.className}>
-        <Sidebar>
-          {children}
-        </Sidebar>
+        <Sidebar>{children}</Sidebar>
       </body>
     </html>
-  )
+  );
 }
