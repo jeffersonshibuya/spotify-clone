@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 
 import AuthModal from 'components/AuthModal';
-import Modal from 'components/Modal';
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);

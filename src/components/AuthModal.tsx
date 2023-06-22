@@ -21,7 +21,7 @@ const AuthModal = () => {
   const { isOpen, onClose } = useAuthModal();
 
   useEffect(() => {
-    if (!session) {
+    if (session) {
       router.refresh();
       onClose();
     }
