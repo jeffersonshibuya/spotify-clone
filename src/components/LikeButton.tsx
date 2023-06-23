@@ -38,9 +38,9 @@ const LikeButton = ({ songId }: LikeButtonProps) => {
       if (!error && data) {
         setIsLiked(true);
       }
-
-      fetchData();
     };
+
+    fetchData();
   }, [songId, supabaseClient, user?.id]);
 
   const Icon = isLiked ? AiFillHeart : AiOutlineHeart;
