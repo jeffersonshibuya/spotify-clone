@@ -19,8 +19,6 @@ const Library = ({ songs }: LibraryProps) => {
   const uploadModal = useUploadModal();
   const { user } = useUser();
 
-  console.log(songs);
-
   const onClick = () => {
     if (!user) {
       return authModal.onOpen();
