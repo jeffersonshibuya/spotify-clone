@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { toDateTime } from './helpers';
 import { stripe } from './stripe';
 
@@ -24,11 +24,7 @@ const upsertProductRecord = async (product: Stripe.Product) => {
   };
 
   const { error } = await supabaseAdmin.from('products').upsert([productData]);
-
-  if (error) {
-    throw error;
-  }
-
+  if (error) throw error;
   console.log(`Product inserted/updated: ${product.id}`);
 };
 
@@ -116,7 +112,6 @@ const manageSubscriptionStatusChange = async (
     .single();
   if (noCustomerError) throw noCustomerError;
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const { id: uuid } = customerData!;
 
   const subscription = await stripe.subscriptions.retrieve(subscriptionId, {
@@ -128,11 +123,11 @@ const manageSubscriptionStatusChange = async (
     id: subscription.id,
     user_id: uuid,
     metadata: subscription.metadata,
-    //@ts-ignore
+    // @ts-ignore
     status: subscription.status,
     price_id: subscription.items.data[0].price.id,
     //TODO check quantity on subscription
-    //@ts-ignore
+    // @ts-ignore
     quantity: subscription.quantity,
     cancel_at_period_end: subscription.cancel_at_period_end,
     cancel_at: subscription.cancel_at
@@ -170,6 +165,7 @@ const manageSubscriptionStatusChange = async (
   // For a new subscription copy the billing details to the customer object.
   // NOTE: This is a costly operation and should happen at the very end.
   if (createAction && subscription.default_payment_method && uuid)
+    //@ts-ignore
     await copyBillingDetailsToCustomer(
       uuid,
       subscription.default_payment_method as Stripe.PaymentMethod
