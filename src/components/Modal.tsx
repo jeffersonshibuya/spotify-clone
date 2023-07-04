@@ -38,6 +38,7 @@ const Modal = ({
           <div>{children}</div>
           <Dialog.Close asChild>
             <button
+              aria-label="Close"
               className="absolute right-[10px] top-[10px] inline-flex
                 h-[25px] w-[25px] appearance-none items-center justify-center
                 rounded-full text-neutral-400 hover:text-white focus:outline-none"
